@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf Example</title>
+</head>
+<body>
+<form th:action="@{/validator}" th:object="${student}" method="post">
+    <div th:text="${message}"></div>
+    <input th:field="*{email}"/><i th:errors="*{email}"/>
+    <label>Name </label>
+    <input th:field="*{fullName}"/><i th:errors="*{fullName}"/>
+    <label>Marks </label>
+    <input th:field="*{marks}"/><i th:errors="*{marks}"/>
+    <label>Gender </label>
+    <input th:field="*{gender}" type="radio" value="true"/>
+    <label>Male </label>
+    <input th:field="*{gender}" type="radio" value="false"/>
+    <label>Female </label><i th:errors="*{gender}"/>
+    <select th:field="*{contry}" class="form-control">
+        <option value=""></option>
+        <option th:each="c:${contries}" th:value="${c.key}">[(${c.value})]</option>
+    </select>
+    <button type="submit">Validate</button>
+</form>
+</body>
+</html>
